@@ -1,3 +1,9 @@
 {
-    "extends": "./node_modules/reskript/config/tsconfig.json"
+    "extends": "./node_modules/reskript/config/tsconfig.json",
+    "compilerOptions": {
+        // noEmit must be false if we want to generate d.ts
+        "noEmit": false,
+        "declaration": true,
+        "outDir": "es"
+    }
 }

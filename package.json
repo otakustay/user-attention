@@ -8,9 +8,10 @@
   "scripts": {
     "lint": "skr lint",
     "test": "skr test --coverage",
-    "build": "skr rollup"
+    "build": "tsc"
   },
   "devDependencies": {
-    "reskript": "^0.20.6"
+    "reskript": "^0.20.6",
+    "typescript": "^3.6.4"
   }
 }
