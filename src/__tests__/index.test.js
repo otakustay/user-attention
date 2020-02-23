@@ -106,3 +106,12 @@ test('will change to unknown when exceeds idle time', async () => {
     dispose();
     expect(getState()).toBe('unknown');
 });
+
+test('will not change to active on mouse move when currently inactive', () => {
+    const {getState, dispose} = create();
+    global.document.visibilityState = 'hidden';
+    global.document.emit('visibilitychange');
+    global.document.documentElement.emit('mousemove');
+    dispose();
+    expect(getState()).toBe('inactive');
+});

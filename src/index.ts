@@ -60,6 +60,11 @@ export const create = (options: Options = {}): AttentionContext => {
     };
 
     const toActive = () => updateState('active');
+    const toActiveWhenNotInactive = () => {
+        if (state.current !== 'inactive') {
+            updateState('active');
+        }
+    };
     const toInactive = () => updateState('inactive');
     const handleVisibilityChange = () => {
         if (document.visibilityState === 'visible') {
@@ -69,7 +74,7 @@ export const create = (options: Options = {}): AttentionContext => {
             toInactive();
         }
     };
-    document.documentElement.addEventListener('mousemove', toActive);
+    document.documentElement.addEventListener('mousemove', toActiveWhenNotInactive);
     document.documentElement.addEventListener('keydown', toActive);
     document.documentElement.addEventListener('mousedown', toActive);
     document.documentElement.addEventListener('resize', toActive);
