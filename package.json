@@ -1,7 +1,9 @@
 {
   "name": "user-attention",
   "version": "1.0.1",
-  "main": "index.js",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
   "repository": "git@github.com:otakustay/user-attention.git",
   "author": "otakustay <otakustay@gmail.com>",
   "license": "MIT",
