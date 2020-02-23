@@ -1,6 +1,6 @@
 {
   "name": "user-attention",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:otakustay/user-attention.git",
   "author": "otakustay <otakustay@gmail.com>",
