@@ -11,7 +11,9 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "reskript": "^0.20.6",
-    "typescript": "^3.6.4"
+    "classnames": "^2.2.6",
+    "reskript": "^0.25.10",
+    "typescript": "^3.8.2",
+    "webpack": "^4.41.6"
   }
 }
