@@ -5,10 +5,15 @@
   "repository": "git@github.com:otakustay/user-attention.git",
   "author": "otakustay <otakustay@gmail.com>",
   "license": "MIT",
+  "files": [
+    "cjs",
+    "es"
+  ],
   "scripts": {
     "lint": "skr lint",
     "test": "skr test --coverage",
-    "build": "tsc"
+    "build": "rm -rf es cjs && tsc && tsc --module ESNext --outDir ./es",
+    "start": "skr dev --src=demo"
   },
   "devDependencies": {
     "classnames": "^2.2.6",
