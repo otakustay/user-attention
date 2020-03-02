@@ -1,3 +1,5 @@
+import hasPassiveEvent from 'has-passive-events';
+
 export interface Options {
     readonly maxIdleTime?: number;
 }
@@ -37,6 +39,8 @@ const createSubscription = (): Subscription => {
     };
 };
 
+const eventOptions = hasPassiveEvent ? {passive: true, capture: true} : true;
+
 export const create = (options: Options = {}): AttentionContext => {
     const {maxIdleTime = 1000 * 30} = options;
     const timer: Mutable<number> = {current: -1};
@@ -74,16 +78,16 @@ export const create = (options: Options = {}): AttentionContext => {
             toInactive();
         }
     };
-    document.documentElement.addEventListener('mousemove', toActiveWhenNotInactive);
-    document.documentElement.addEventListener('keydown', toActive);
-    document.documentElement.addEventListener('mousedown', toActive);
-    document.documentElement.addEventListener('resize', toActive);
-    document.documentElement.addEventListener('touchstart', toActive);
-    document.documentElement.addEventListener('scroll', toActive);
-    document.body.addEventListener('scroll', toActive);
-    window.addEventListener('focus', toActive);
-    window.addEventListener('blur', toInactive);
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.documentElement.addEventListener('mousemove', toActiveWhenNotInactive, eventOptions);
+    document.documentElement.addEventListener('keydown', toActive, eventOptions);
+    document.documentElement.addEventListener('mousedown', toActive, eventOptions);
+    document.documentElement.addEventListener('resize', toActive, eventOptions);
+    document.documentElement.addEventListener('touchstart', toActive, eventOptions);
+    document.documentElement.addEventListener('scroll', toActive, eventOptions);
+    document.body.addEventListener('scroll', toActive, eventOptions);
+    window.addEventListener('focus', toActive, eventOptions);
+    window.addEventListener('blur', toInactive, eventOptions);
+    document.addEventListener('visibilitychange', handleVisibilityChange, eventOptions);
 
     return {
         subscribe,
@@ -94,16 +98,16 @@ export const create = (options: Options = {}): AttentionContext => {
             return lastActionAt.current;
         },
         dispose() {
-            document.documentElement.removeEventListener('mousemove', toActive);
-            document.documentElement.removeEventListener('keydown', toActive);
-            document.documentElement.removeEventListener('mousedown', toActive);
-            document.documentElement.removeEventListener('resize', toActive);
-            document.documentElement.removeEventListener('touchstart', toActive);
-            document.documentElement.removeEventListener('scroll', toActive);
-            document.body.removeEventListener('scroll', toActive);
-            window.removeEventListener('focus', toActive);
-            window.removeEventListener('blur', toInactive);
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            document.documentElement.removeEventListener('mousemove', toActive, eventOptions);
+            document.documentElement.removeEventListener('keydown', toActive, eventOptions);
+            document.documentElement.removeEventListener('mousedown', toActive, eventOptions);
+            document.documentElement.removeEventListener('resize', toActive, eventOptions);
+            document.documentElement.removeEventListener('touchstart', toActive, eventOptions);
+            document.documentElement.removeEventListener('scroll', toActive, eventOptions);
+            document.body.removeEventListener('scroll', toActive, eventOptions);
+            window.removeEventListener('focus', toActive, eventOptions);
+            window.removeEventListener('blur', toInactive, eventOptions);
+            document.removeEventListener('visibilitychange', handleVisibilityChange, eventOptions);
             clearTimeout(timer.current);
         },
     };

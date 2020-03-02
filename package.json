@@ -22,5 +22,8 @@
     "reskript": "^0.25.10",
     "typescript": "^3.8.2",
     "webpack": "^4.41.6"
+  },
+  "dependencies": {
+    "has-passive-events": "^1.0.0"
   }
 }
